@@ -1,0 +1,23 @@
+USE [BarberShop]
+GO
+
+/****** Object:  Table [dbo].[tblCustomers]    Script Date: 6/15/2019 8:44:29 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tblCustomers](
+	[CustomerID] [int] NOT NULL,
+	[FirstName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[UserName] [nvarchar](50) NULL,
+	[Password] [nchar](64) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CustomerID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+

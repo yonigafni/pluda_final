@@ -1,0 +1,9 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-size: cover;
+}
+
+#createBtn {
+    background-color: #e4e1e1;
+}

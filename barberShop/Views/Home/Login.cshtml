@@ -1,0 +1,85 @@
+﻿@model barberShop.Models.Customer
+
+@{
+    ViewBag.Title = "Login";
+}
+
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <!--<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.js"></script>-->
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <!--<script src="~/Scripts/bootstrap.js"></script>-->
+        
+        <!--CSS for this file-->
+        <link href="~/Content/Login.css" rel="stylesheet" />
+
+    </head>
+
+<body>
+    <p id="p1" class="row"> <b style="background-color: white;">0545519008 ליצירת קשר</b> <NOBR/> <img src="~/Content/Images/phone.png" alt="Pluda BarberShop" id="img4" /> </p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div id="l1">
+                        <h1 id="h1"><b id="b1">מספרת פלודה לכלבים</b></h1>
+                    </div>
+                 
+                    <img src="~/Content/Images/img1.png" alt="Pluda BarberShop" id="img3" class="rotate315"/>                  
+                    <img src="~/Content/Images/img6.png" alt="Pluda BarberShop" id="img1" />
+                    <img src="~/Content/Images/img2.png" alt="Pluda BarberShop" id="img2" class="rotate45"/>
+
+                    <div id="d2">
+
+                        @Html.EditorFor(model => model.UserName, new { HtmlAttributes = new { @placeholder = "הכנס שם משתמש", style = "text-align: center" } })
+                        <b id="b2" style="background-color: white;">שם משתמש</b>
+
+                        <br />
+
+                        @Html.EditorFor(model => model.Password, new { HtmlAttributes = new { @placeholder = "הכנס ססמה", @type = "password", style = "text-align: center" } })
+                        <b id="b2" style="background-color: white;">סיסמה</b>
+                        <br />
+
+                        <button id="enterBtn" type="submit" onclick="location.href='/Home/Login/'"> התחברות </button>
+
+                        <div id="registerLabel">                  
+                            <a href="/Customer/Register" style="color: #4b4a54; background-color: white;"><b>לקוח חדש? הרשם</b></a>
+                            <br />
+                        </div>
+
+                        @if (null != TempData["invalidCustomer"])
+                        {
+                            <script type="text/javascript">
+                            alert("@TempData["invalidCustomer"]");
+                            </script>
+                        }
+
+                        @if (null != TempData["invalidConnection"])
+                        {
+                            <script type="text/javascript">
+                            alert("@TempData["invalidConnection"]");
+                            </script>
+                        }
+
+                    </div>
+
+
+                }
+            </div>
+
+        </div>
+
+        <p id="p2" style="margin-left: -80px; margin-top: -100px;"><b style="background-color: white;">:שעות פתיחה <br /> ימים א'-ה' - 09:00 - 18:00 <br /> יום ו' 09:00 - 14:00</b></p>
+    </div>
+
+</body>
+
+

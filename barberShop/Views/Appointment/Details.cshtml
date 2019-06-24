@@ -1,0 +1,67 @@
+﻿@model barberShop.Models.FullDetails
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link href="~/Content/bootstrap.min.css" rel="stylesheet" />-->
+
+@functions
+{
+    string getDate(DateTime date)
+    {
+        return date.ToString("dd/MM/yyyy HH:mm");
+    }
+}
+
+@section scripts
+{
+    <!--
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>-->
+}
+
+
+<div class="modal-header" style="background-color: white">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="text-align:left; margin-left: 0px">×</button>
+    <h4 class="modal-title" id="myModalLabel">פרטי הזמנה</h4>
+</div>
+
+<div class="modal-body">
+    <dl class="dl-horizontal">
+        <dt>
+            ת.ז
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.appointment.CustomerID)
+        </dd>
+        <dt>
+            שם פרטי
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.customer.FirstName)
+        </dd>
+        <dt>
+            שם משפחה
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.customer.LastName)
+        </dd>
+        <dt>
+            מועד התור
+        </dt>
+        <dd>
+            @getDate(Model.appointment.AppointmentDateTime)
+        </dd>
+        <dt>
+            מועד קביעת התור
+        </dt>
+        <dd>
+            @getDate(Model.appointment.StatusDateTime)
+        </dd>
+    </dl>
+</div>
+
+
+

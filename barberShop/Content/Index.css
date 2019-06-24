@@ -1,0 +1,102 @@
+﻿
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background: url(Images/imgBackground6.jpg)no-repeat center center fixed;
+    background-size: cover;
+}
+
+#header1 {
+    text-align: center;
+    font-weight: 900;
+    font-stretch: extra-condensed;
+    background-color: white;
+}
+
+#table1 {
+    background-color: #a7a788;
+    width: 95%;
+    margin-left: 35px;
+    text-align: center;
+    direction: rtl;
+}
+
+#detailButton {
+    font-size: 11px !important;
+    padding: 5px 10px !important;
+    background-color: #2b2c31 !important;
+    border-color: #e4cdcd !important;
+}
+
+#editButton {
+    font-size: 11px !important;
+    padding: 5px 10px !important;
+    background-color: #2b2c31 !important;
+    border-color: #e4cdcd !important;
+}
+
+#deletetButton {
+    font-size: 11px !important;
+    padding: 5px 10px !important;
+    background-color: #2b2c31 !important;
+    border-color: #e4cdcd !important;
+}
+
+#filterType {
+    text-align: right;
+    direction: rtl;
+    margin-right: 25px;
+}
+
+#filterName {
+    text-align: right;
+    direction: rtl;
+    margin-right: 25px;
+}
+
+#filterDate {
+    text-align: right;
+    direction: rtl;
+    margin-right: 25px;
+}
+
+
+#selectFieldsByName {
+    position: absolute;
+    margin-right: 160px;
+    margin-top: -30px;
+    width: 115px;
+}
+
+
+#selectFieldsByDate {
+    position: absolute;
+    margin-right: 160px;
+    margin-top: -30px;
+    width: 115px;
+}
+
+#headerTbl {
+    background-color: #383737;
+    color: white;
+    font-family: inherit;
+}
+
+#actionButton1 {
+    background-color: #2b2c31;
+    color: white !important;
+}
+
+#actionButton2 {
+    background-color: #2b2c31;
+    color: white !important;
+}
+
+#actionButtonContainer {
+    text-align:center;
+}
+
+#rowTable:hover {
+    background-color: #f3ecec;
+    cursor: pointer;
+}

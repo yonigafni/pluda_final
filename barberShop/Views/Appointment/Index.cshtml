@@ -1,0 +1,255 @@
+﻿@model IEnumerable<barberShop.Models.FullDetails>
+
+@using barberShop.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@functions {
+
+    string getDate(DateTime date)
+    {
+        return date.ToString("dd/MM/yyyy HH:mm");
+    }
+
+    //The function return list of all the customers
+    List<string> getCustomers()
+    {
+        List<string> customers = new List<string>();
+        string name;
+        foreach (FullDetails details in @Model)
+        {
+            name = details.customer.FirstName + " " + details.customer.LastName;
+            if (!customers.Contains(name))
+                customers.Add(name);
+        }
+        return customers;
+    }
+
+    //The function return list of all the dates of all the appointment
+    List<DateTime> getDates()
+    {
+        DateTime date;
+        List<DateTime> dates = new List<DateTime>();
+        foreach (FullDetails details in @Model)
+        {
+            if (details.appointment.Status != 9 && details.appointment.AppointmentDateTime > DateTime.Now)
+            {
+                date = details.appointment.AppointmentDateTime.Date;
+                if (!dates.Contains(date))
+                {
+                    dates.Add(date);
+                }
+            }
+        }
+        return dates;
+    }
+
+    //The function input full date (include time) of appointment ant output only the date
+    string getDateOnly(DateTime date)
+    {
+        return (date.Date).ToString("dd/MM/yyyy");
+    }
+
+    string dateStr(DateTime date)
+    {
+        string dateStr = date.ToString("dd/MM/yyyy");
+        dateStr = dateStr.Substring(0, 10);
+        dateStr = dateStr.Replace("/", "");
+        return dateStr;
+    }
+
+    string getName(string firstName, string lastName)
+    {
+        return firstName + lastName;
+    }
+
+    string getName2(string name)
+    {
+        return name.Replace(" ", "").Replace("'", "");
+    }
+
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <!--<link href="~/Content/bootstrap.min.css" rel="stylesheet" />-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <!--Scripts for this file-->
+    <script src="~/Scripts/IndexJs.js"></script>
+
+    <!--CSS for this file-->
+    <link href="~/Content/Index.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+    <div id="header1">
+        <h2>@Session["LastName"] @Session["FirstName"] שלום </h2>
+    </div>
+
+    <div><br></div>
+
+
+    <div id="filterType">
+        <label style="background-color:white"><b>סינון לפי</b></label>
+        <select id="selectFieldsByField" class="selectFieldsByField">
+            <option value="" style="direction:rtl" selected1>ללא</option>
+            <option value="selectFieldsByName" style="direction:rtl" selected1>שם</option>
+            <option value="selectFieldsByDate" style="direction:rtl" selected1>תאריך תור</option>
+        </select>
+    </div>
+
+    <div id="filterName">
+        <select id="selectFieldsByName" class="selectFieldsByName">
+            <option value="All" style="direction:rtl" selected2>הכל</option>
+            @foreach (string name in @getCustomers())
+            {
+                <option style="direction:rtl" value="@getName2(name)"> @name </option>
+            }
+        </select>
+    </div>
+
+    <div id="filterDate">
+        <select id="selectFieldsByDate" class="selectFieldsByDate">
+            <option value="All" selected3>הכל</option>
+            @foreach (DateTime date in @getDates())
+            {
+                <option value="@dateStr(date)"> @getDateOnly(date) </option>
+            }
+        </select>
+    </div>
+
+    <div id="actionButtonContainer">
+        <button id="actionButton1" class="btn btn-primary actionButton1" onclick="location.href='/Home/Login'">התנתק</button>
+        <span>&nbsp;&nbsp;</span>
+        <button id="actionButton2" class="btn btn-primary actionButton2" onclick="location.href='javascript:void(0);'">קבע תור חדש</button>
+    </div>
+
+    <div><br></div>
+
+    <div>
+        <table id="table1" class="table table-bordered">
+            <colgroup>
+                <col style="width: 23%;">
+                <col style="width: 23%;">
+                <col style="width: 24%;">
+                <col style="width: 28%;">
+            </colgroup>
+            <tr id="headerTbl">
+                <th>
+                    <b>שם פרטי</b>
+                </th>
+                <th>
+                    <b>שם משפחה</b>
+                </th>
+                <th>
+                    <b>שעת התור</b>
+                </th>
+                <th>
+                </th>
+            </tr>
+            @foreach (FullDetails details in @Model.Where(m =>
+                m.appointment.AppointmentDateTime > DateTime.Now &&
+                m.appointment.Status != 9
+                ))
+            {
+                <tr id="rowTable" Name1="@getName2(getName(details.customer.FirstName, details.customer.LastName))" Date1="@dateStr(details.appointment.AppointmentDateTime)">
+                    <th onclick="javascript:void(0)" class="trButton" data-customerId="@details.appointment.CustomerID" data-appointmentId="@details.appointment.AppointmentID">
+                        @details.customer.FirstName
+                    </th>
+                    <th onclick="javascript:void(0)" class="trButton" data-customerId="@details.appointment.CustomerID" data-appointmentId="@details.appointment.AppointmentID">
+                        @details.customer.LastName
+                    </th>
+                    <th onclick="javascript:void(0)" class="trButton" data-customerId="@details.appointment.CustomerID" data-appointmentId="@details.appointment.AppointmentID">
+                        @getDate(details.appointment.AppointmentDateTime)
+                    </th>
+                    <th>
+                        <a href="javascript:void(0);" id="detailButton" data-dismiss="table1" class="btn btn-primary detailButton" data-customerId="@details.appointment.CustomerID" data-appointmentId="@details.appointment.AppointmentID">פרטי התור</a>
+                        @if (@Session["UserName"].Equals(@details.customer.UserName))
+                        {
+                            <NOBR>|</NOBR>
+                            <a href="javascript:void(0);" id="editButton" class="btn btn-primary editButton" data-customerId="@details.appointment.CustomerID" data-appointmentId="@details.appointment.AppointmentID">ערוך תור</a>
+                            <NOBR>|</NOBR>
+                            @Html.ActionLink("מחיקה", "Delete", details.appointment, new { onclick = "return confirm('?האם ברצונך לבטל את התור');", @class = "btn btn-primary", @id = "deletetButton" })
+                        }
+                    </th>
+                </tr>
+
+
+            }
+        </table>
+
+    </div>
+
+    <!--Popup for Details-->
+    <div id='myModal' class='modal' style="background-color: none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Popup for Create-->
+    <div id='myModalCreate' class='modal' style="background-color: none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContentCreate'></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Popup for Edit-->
+    <div id='myModalEdit' class='modal' style="background-color: none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContentEdit'></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-----------Invalid appointment---------------->
+    @if (null != TempData["timeOver"])
+    {
+        <script type="text/javascript">
+            alert("@TempData["timeOver"]");
+        </script>
+    }
+
+    @if (null != TempData["barbershopClose"])
+    {
+        <script type="text/javascript">
+            alert("@TempData["barbershopClose"]");
+        </script>
+    }
+
+    @if (null != TempData["errorTime"])
+    {
+        <script type="text/javascript">
+        alert("@TempData["errorTime"]");
+        </script>
+    }
+
+    @if (null != TempData["notFreeApointnet"])
+    {
+        <script type="text/javascript">
+        alert("@TempData["notFreeApointnet"]");
+        </script>
+    }
+
+    <!----------------------------------------------->
+</body>
+

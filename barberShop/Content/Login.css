@@ -1,0 +1,138 @@
+﻿
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background: url(Images/imgBackground6.jpg)no-repeat center center fixed;
+    background-size: cover;
+}
+
+.row {
+    margin-right: 0 !important;
+}
+
+.form {
+    border: 3px solid #f1f1f1;
+}
+
+
+input[type=text] {
+    width: 30%;
+    padding: 9px 16px;
+    margin-top: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 44px;
+}
+
+input[type=password] {
+    width: 30%;
+    padding: 9px 16px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#enterBtn {
+    background-color: #2b2c31;
+    color: white;
+    padding: 9px 14px;
+    margin-right: 80px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+
+#img1 {
+    text-align: center;
+    margin: 15px 0 12px 0;
+    border-radius: 15%;
+    width: 35%;
+    height: 35%;
+}
+
+#l1 {
+    text-align: center;
+}
+
+#registerLabel {
+    margin-top: 15px;
+    margin-right: 65px;
+    padding-right: 20px;
+}
+
+#b2 {
+    color: #434869;
+    font-size: larger;
+}
+
+#h1 {
+    margin-top: 20px;
+}
+
+#b1 {
+    font-size: larger;
+}
+
+#d2 {
+    margin-top: 45px;
+    margin-left: 30px;
+}
+
+#img2 {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 75px;
+    width: 125px;
+    height: 175px;
+    rotation: 45deg;
+}
+
+
+#img3 {
+    position: absolute;
+    margin-left: -280px;
+    margin-top: 75px;
+    width: 125px;
+    height: 175px;
+    rotation: 135deg;
+}
+
+#img4 {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    margin-top: -2px;
+}
+
+.rotate315 {
+    -webkit-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    -o-transform: rotate(315deg);
+    -ms-transform: rotate(315deg);
+    transform: rotate(315deg);
+}
+
+.rotate45 {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+#p1 {
+    position: absolute;
+    margin-left: 83%;
+    margin-top: 1%;
+}
+
+#p2 {
+    position: absolute;
+    direction: rtl;
+}
+

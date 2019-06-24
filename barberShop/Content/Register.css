@@ -1,0 +1,61 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(Images/imgBackground6.jpg)no-repeat center center fixed;
+    background-size: cover;
+}
+
+.form {
+    border: 3px solid #f1f1f1;
+}
+
+
+#label1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#d1 {
+    text-align: center;
+    margin-top: -15px;
+}
+
+
+#input1 {
+    width: 30%;
+    margin-top: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+
+#validatePwd {
+    width: 30%;
+    margin-top: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+#pwd {
+    width: 30%;
+    margin-top: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+#pageBtn {
+    position: absolute;
+    color: #212529;
+    margin-top: -570px;
+    background-color: white;
+}
+
+.crtBtn {
+    background-color: #333333;
+    color: white;
+}

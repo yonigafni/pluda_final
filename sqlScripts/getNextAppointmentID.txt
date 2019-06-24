@@ -1,0 +1,23 @@
+USE [BarberShop]
+GO
+
+/****** Object:  UserDefinedFunction [dbo].[getNextAppointmentID]    Script Date: 15/06/2019 13:02:05 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE FUNCTION [dbo].[getNextAppointmentID] 
+(
+	@CustomerID int
+)
+RETURNS int
+AS
+BEGIN
+
+	return (select isnull(max(AppointmentID), 0) + 1 from tblAppointments where CustomerID = @CustomerID);
+
+END
+GO

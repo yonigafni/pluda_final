@@ -1,0 +1,101 @@
+﻿@model barberShop.Models.Customer
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <!--<script src="~/Scripts/jquery-3.4.1.js"></script>-->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!--<script src="~/Scripts/bootstrap.js"></script>-->
+    
+    <!--CSS for this file-->
+    <link href="~/Content/Register.css" rel="stylesheet" />
+
+    <script type="text/javascript" language="javascript">
+
+        //Message which shown in case the user already exists
+    var err = "@ViewBag.Message";
+    if (err != "")
+        alert(err);
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        //Function for validate password
+        function checkPwd() {
+            var pwd = document.getElementById('pwd').value;
+            var validatePwd = document.getElementById('validatePwd').value;
+            if (pwd != validatePwd) {
+                alert("הקש ססמה שנית זהה!");
+                return false;
+            }
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    
+                    <div id="label1">
+                        <h1><b style="background-color:white">לקוח חדש</b></h1>
+                    </div>
+                    
+                    <div id="d1">
+
+                        <!-- class="form-group"-->
+                        <!--class="col-md-10"-->
+                        @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @id = "input1", @class = "form-control", required = "required", placeholder = "ת.ז", style = "text-align: center;" } })
+                        <!--<b>ת.ז</b>-->
+                        <br />
+
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @id = "input1", @class = "form-control", required = "required", placeholder = "שם פרטי", style = "text-align: center;" } })
+                        <!--<b>שם פרטי</b>-->
+                        <br />
+
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @id = "input1", @class = "form-control", required = "required", placeholder = "שם משפחה", style = "text-align: center;" } })
+                        <!--<b>שם משפחה</b>-->
+                        <br />
+
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @id = "input1", @class = "form-control", required = "required", placeholder = "שם משתמש", style = "text-align: center;" } })
+                        <!--<b>שם משתמש</b>-->
+                        <br />
+
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", required = "required", @type = "password", id = "pwd", placeholder = "סיסמה", style = "text-align: center;" } })
+                        <!--<b>סיסמה</b>-->
+                        <br />
+
+                        @*@Html.Password("validatePwd", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "הקש סיסמה שנית", onblur = "return checkPwd()" } })*@
+                        <input class="form-control text-box single-line" id="validatePwd" placeholder="הקש סיסמה שנית" required="required" type="password" value="" style="text-align: center" />
+                        <!--<b>אימות סיסמה</b>-->
+                        <br />
+
+
+                        <div>
+                            <input type="submit" value="Create" onclick="return checkPwd()" class="btn btn-default crtBtn" />
+                        </div>
+                    </div>
+
+                }
+
+                <div>
+                    <a href="/Home/Login" id="pageBtn"><b>עמוד הבית</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,77 @@
+﻿@model barberShop.Models.Appointment
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@functions {
+
+    //The function output only the date
+    string getDateOnly()
+    {
+        DateTime date = DateTime.Now;
+        return (date.Date).ToString("yyyy-MM-dd");
+    }
+}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--JS for this popup-->
+    <script src="~/Scripts/EditCreate.js"></script>
+
+    <style>
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background-size: cover;
+            background-size: cover;
+        }
+
+        #createBtn {
+            background-color: #8a8a8a;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="text-align:left; margin-left: 0px">×</button>
+        <h4 class="modal-title" id="myModalLabel">תור חדש</h4>
+    </div>
+
+    <div class="modal-body">
+
+        @using (Html.BeginForm())
+        {
+            <dl class="dl-horizontal">
+                <dt>
+                    יום
+                </dt>
+                <dd>
+                    <input type="date" name="day" id="day" data-date-format="DD MM YYYYY" value=@getDateOnly() required>
+                </dd>
+                <dt>
+                    שעה
+                </dt>
+                <dd>
+                    <input type="time" name="time" id="time" value='09:00' required>
+                </dd>
+
+            </dl>
+
+            <input id="createBtn" type="submit" value="קבע תור" onclick="return combineDate()" class="btn btn-default createBtn" />      
+
+            @Html.HiddenFor(model => model.AppointmentDateTime)
+
+        }
+    </div>
+
+</body>
